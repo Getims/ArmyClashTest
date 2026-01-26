@@ -1,0 +1,19 @@
+﻿using Project.Scripts.Core.Infrastructure.StateMachines.States;
+
+namespace Project.Scripts.Core.Scenes.Core
+{
+    public class GameLoopState : IEnterState, IExitState
+    {
+        public GameLoopState()
+        {
+        }
+
+        public void Enter()
+        {
+        }
+
+        public void Exit()
+        {
+        }
+    }
+}
