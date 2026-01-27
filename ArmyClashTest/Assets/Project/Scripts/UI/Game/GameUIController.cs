@@ -7,9 +7,14 @@ namespace Project.Scripts.UI.Game
     {
         T GetPanel<T>() where T : UIPanel;
         T ShowPanel<T>() where T : UIPanel;
+        void Initialize();
     }
 
     public class GameUIController : AUIController, IGameUIController
     {
+        public void Initialize()
+        {
+            ShowPanel<TopGamePanel>();
+        }
     }
 }

@@ -21,8 +21,7 @@ namespace Project.Scripts.Core.Scenes.Game.States
         private Coroutine _levelCreationCO;
 
         public PrepareGamePlayState(GameStateMachine stateMachine, ICoroutineRunner coroutineRunner,
-            IGameFlowController gameFlowController, ILevelsDataService levelsDataService,
-            IGameUIController gameUIController)
+            IGameFlowController gameFlowController, IGameUIController gameUIController)
         {
             _gameUIController = gameUIController;
             _gameFlowController = gameFlowController;
@@ -50,7 +49,7 @@ namespace Project.Scripts.Core.Scenes.Game.States
             _gameFlowController.Initialize();
 
             yield return new WaitForEndOfFrame();
-            PrepareUI();
+            _gameUIController.Initialize();
 
             while (_gameFlowController.IsLoadComplete == false)
                 yield return new WaitForEndOfFrame();
@@ -59,28 +58,6 @@ namespace Project.Scripts.Core.Scenes.Game.States
             _stateMachine.Enter<GamePlayState>();
             yield return null;
         }
-
-        private void PrepareUI()
-        {
-            var topGamePanel = _gameUIController.ShowPanel<TopGamePanel>();
-            topGamePanel.OnSettingsClick += ShowSettings;
-
-            var settingsPopup = _gameUIController.GetPanel<GameSettingsPopup>();
-            settingsPopup.OnRestartClick += RestartLevel;
-            settingsPopup.OnExitClick += ExitLevel;
-        }
-
-        private void ShowSettings()
-        {
-            _gameUIController.ShowPanel<GameSettingsPopup>();
-        }
-
-        private void RestartLevel() =>
-            _stateMachine.Enter<ResetGameState>();
-
-        private void ExitLevel()
-        {
-            _stateMachine.Enter<ExitGameState>();
-        }
+       
     }
 }
