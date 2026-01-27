@@ -19,5 +19,11 @@ namespace Project.Scripts.Configs.Gameplay
         {
             _unitStat = unitStat;
         }
+        
+        public StatConfig(UnitStat unitStat, int value)
+        {
+            _unitStat = unitStat;
+            _value = value;
+        }
     }
 }

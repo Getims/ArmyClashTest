@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Project.Scripts.Core.Infrastructure.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,6 +18,17 @@ namespace Project.Scripts.Configs.Gameplay
 
         [SerializeField, LabelText("ATKSPD"), MinValue(0)]
         private int _attackSpeed = 1;
+
+        public List<StatConfig> GetAllStats()
+        {
+            return new List<StatConfig>
+            {
+                new StatConfig(UnitStat.HP, _health),
+                new StatConfig(UnitStat.ATK, _attack),
+                new StatConfig(UnitStat.SPEED, _speed),
+                new StatConfig(UnitStat.ATKSPD, _attackSpeed)
+            };
+        }
 
         public int GetStat(UnitStat unitStat)
         {

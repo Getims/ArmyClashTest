@@ -14,7 +14,7 @@ namespace Project.Scripts.Configs.Gameplay
         private List<StatConfig> _statConfigs = new List<StatConfig>();
 
         public float ModelSize => _modelSize;
-
+        public IReadOnlyCollection<StatConfig> StatConfigs => _statConfigs;
         public int GetStat(UnitStat unitStat)
         {
             var value = 0;

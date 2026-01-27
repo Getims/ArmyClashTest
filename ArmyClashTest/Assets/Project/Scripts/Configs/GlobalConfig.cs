@@ -11,6 +11,9 @@ namespace Project.Scripts.Configs
         [SerializeField]
         private bool _enableDebug;
 
+        [SerializeField, MinValue(1)]
+        private int _unitsCountPerTeam = 20;
+        
         [Title("Stats Balance")]
         [SerializeField]
         private float _speedPointValue = 1;
@@ -21,5 +24,6 @@ namespace Project.Scripts.Configs
         public bool EnableDebug => _enableDebug;
         public float SpeedPointValue => _speedPointValue;
         public float AttackSpeedPointValue => _attackSpeedPointValue;
+        public int UnitsCountPerTeam => _unitsCountPerTeam;
     }
 }

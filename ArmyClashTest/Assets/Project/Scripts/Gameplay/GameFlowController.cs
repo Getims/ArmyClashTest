@@ -1,6 +1,7 @@
 ﻿using System;
 using Project.Scripts.Core.Events;
 using Project.Scripts.Core.Infrastructure.Configs;
+using Project.Scripts.Gameplay.UnitsGeneration;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +19,12 @@ namespace Project.Scripts.Gameplay
 
     public class GameFlowController : MonoBehaviour, IGameFlowController
     {
+        [SerializeField]
+        private UnitsController _unitsController;
+
+        [SerializeField]
+        private UnitsFactory _unitsFactory;
+        
         [Inject] private GlobalEventProvider _globalEventProvider;
         [Inject] private IConfigsProvider _configsProvider;
 
@@ -29,10 +36,13 @@ namespace Project.Scripts.Gameplay
 
         public void Initialize()
         {
+            _unitsFactory.Initialize();
+            _unitsController.Initialize(_unitsFactory);
         }
 
         public void GenerateLevel()
         {
+            _unitsController.CreateUnits();
             _isGameComplete = false;
         }
 

@@ -19,7 +19,7 @@ namespace Project.Scripts.Configs.Gameplay
 
         public Mesh ShapeMesh => _shapeMesh;
         public Vector3 ShapeBaseScale => _shapeBaseScale;
-
+        public IReadOnlyCollection<StatConfig> StatConfigs => _statConfigs;
         public int GetStat(UnitStat unitStat)
         {
             var value = 0;

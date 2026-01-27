@@ -19,7 +19,7 @@ namespace Project.Scripts.Core.Utilities
         public static void SetLocalSize(this Transform transform, float size)
         {
             transform.localScale = Vector3.one * size;
-        }
+        }  
 
         public static void SetLocalPositionY(this Transform transform, float position)
         {

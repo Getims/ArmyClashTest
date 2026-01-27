@@ -1,0 +1,43 @@
+using Project.Scripts.Configs.Gameplay;
+using Sirenix.OdinInspector;
+using UnityEngine;
+
+namespace Project.Scripts.Gameplay.Units
+{
+    [RequireComponent(typeof(Unit))]
+    public class UnitDebug : MonoBehaviour
+    {
+        [SerializeField]
+        private bool _enableDebug;
+
+        [ReadOnly, LabelText("HP")]
+        private int _health = 0;
+
+        [ReadOnly, LabelText("ATK")]
+        private int _attack = 0;
+
+        [ReadOnly, LabelText("SPEED")]
+        private int _speed = 0;
+
+        [ReadOnly, LabelText("ATKSPD")]
+        private int _attackSpeed = 0;
+
+        private Unit _unit;
+
+        private void Start()
+        {
+            _unit = transform.GetComponent<Unit>();
+        }
+
+        private void FixedUpdate()
+        {
+            if (_enableDebug && _unit != null)
+            {
+                _health = _unit.UnitInfo.GetStat(UnitStat.HP);
+                _attack = _unit.UnitInfo.GetStat(UnitStat.ATK);
+                _speed = _unit.UnitInfo.GetStat(UnitStat.SPEED);
+                _attackSpeed = _unit.UnitInfo.GetStat(UnitStat.ATKSPD);
+            }
+        }
+    }
+}

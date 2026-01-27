@@ -15,6 +15,8 @@ namespace Project.Scripts.Configs.Gameplay
 
         public Color Color => _color;
 
+        public IReadOnlyCollection<StatConfig> StatConfigs => _statConfigs;
+
         public int GetStat(UnitStat unitStat)
         {
             var value = 0;
