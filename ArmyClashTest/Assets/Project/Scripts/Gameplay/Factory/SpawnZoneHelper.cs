@@ -1,18 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Project.Scripts.Gameplay.Units
+namespace Project.Scripts.Gameplay.Factory
 {
     public static class SpawnZoneHelper
     {
-        public static Vector3 GetRandomPointInZone(Transform zoneTransform)
+        public static List<Vector3> DistributeSquares(Vector3 center, Vector3 size, int count)
         {
-            Vector3 center = zoneTransform.position;
-            Vector3 size = zoneTransform.localScale;
+            List<Vector3> positions = new List<Vector3>();
+            float rectWidth = size.x;
+            float rectHeight = size.z;
+            float rectArea = rectWidth * rectHeight;
+            float squareSide = Mathf.Sqrt(rectArea / count);
 
-            float randomX = Random.Range(-size.x * 0.5f, size.x * 0.5f);
-            float randomZ = Random.Range(-size.z * 0.5f, size.z * 0.5f);
+            int cols = Mathf.FloorToInt(rectWidth / squareSide);
+            int rows = Mathf.FloorToInt(rectHeight / squareSide);
 
-            return new Vector3(center.x + randomX, 0f, center.z + randomZ);
+            float startX = center.x - rectWidth / 2 + squareSide / 2;
+            float startZ = center.z - rectHeight / 2 + squareSide / 2;
+
+            int placed = 0;
+            for (int i = 0; i < rows && placed < count; i++)
+            {
+                for (int j = 0; j < cols && placed < count; j++)
+                {
+                    float x = startX + j * squareSide;
+                    float z = startZ + i * squareSide;
+                    positions.Add(new Vector3(x, center.y, z));
+                    placed++;
+                }
+            }
+
+            return positions;
         }
     }
 }

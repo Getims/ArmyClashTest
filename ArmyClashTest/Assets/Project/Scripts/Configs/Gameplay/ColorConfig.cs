@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Project.Scripts.Core.Enums;
 using Project.Scripts.Core.Infrastructure.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;

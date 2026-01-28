@@ -1,4 +1,5 @@
 using System;
+using Project.Scripts.Core.Enums;
 using UnityEngine;
 
 namespace Project.Scripts.Configs.Gameplay
@@ -19,7 +20,7 @@ namespace Project.Scripts.Configs.Gameplay
         {
             _unitStat = unitStat;
         }
-        
+
         public StatConfig(UnitStat unitStat, int value)
         {
             _unitStat = unitStat;

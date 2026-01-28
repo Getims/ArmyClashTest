@@ -13,7 +13,7 @@ namespace Project.Scripts.Configs
 
         [SerializeField, MinValue(1)]
         private int _unitsCountPerTeam = 20;
-        
+
         [Title("Stats Balance")]
         [SerializeField]
         private float _speedPointValue = 1;

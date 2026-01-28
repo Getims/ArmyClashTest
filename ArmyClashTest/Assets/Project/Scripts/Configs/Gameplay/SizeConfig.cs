@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Project.Scripts.Core.Enums;
 using Project.Scripts.Core.Infrastructure.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Project.Scripts.Configs.Gameplay
 
         public float ModelSize => _modelSize;
         public IReadOnlyCollection<StatConfig> StatConfigs => _statConfigs;
+
         public int GetStat(UnitStat unitStat)
         {
             var value = 0;

@@ -1,4 +1,4 @@
-using Project.Scripts.Configs.Gameplay;
+using Project.Scripts.Core.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,16 +10,16 @@ namespace Project.Scripts.Gameplay.Units
         [SerializeField]
         private bool _enableDebug;
 
-        [ReadOnly, LabelText("HP")]
+        [ShowInInspector, ReadOnly, LabelText("HP")]
         private int _health = 0;
 
-        [ReadOnly, LabelText("ATK")]
+        [ShowInInspector, ReadOnly, LabelText("ATK")]
         private int _attack = 0;
 
-        [ReadOnly, LabelText("SPEED")]
+        [ShowInInspector, ReadOnly, LabelText("SPEED")]
         private int _speed = 0;
 
-        [ReadOnly, LabelText("ATKSPD")]
+        [ShowInInspector, ReadOnly, LabelText("ATKSPD")]
         private int _attackSpeed = 0;
 
         private Unit _unit;

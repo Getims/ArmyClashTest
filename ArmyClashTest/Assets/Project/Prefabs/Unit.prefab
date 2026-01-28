@@ -288,7 +288,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 36
+  m_Constraints: 116
   m_CollisionDetection: 1
 --- !u!114 &3122747635111822984
 MonoBehaviour:
@@ -306,6 +306,9 @@ MonoBehaviour:
     _modelContainer: {fileID: 1605948013038993714}
     _meshFilter: {fileID: 8045284064473782596}
     _meshRenderer: {fileID: 5030887771959426773}
+    _collider: {fileID: 5366353225008677283}
+  _moveController:
+    _unitTransform: {fileID: 2479560920265612825}
 --- !u!114 &-7996406184973717673
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,8 @@ namespace Project.Scripts.Core.Scenes.Game.States
         private readonly IGameFlowController _gameFlowController;
         private readonly IGameUIController _gameUIController;
 
-        public GamePlayState(GameStateMachine stateMachine, IGameFlowController gameFlowController, IGameUIController gameUIController)
+        public GamePlayState(GameStateMachine stateMachine, IGameFlowController gameFlowController,
+            IGameUIController gameUIController)
         {
             _stateMachine = stateMachine;
             _gameFlowController = gameFlowController;
@@ -35,7 +36,7 @@ namespace Project.Scripts.Core.Scenes.Game.States
         {
             _stateMachine.Enter<GameOverState, bool>(isWin);
         }
-        
+
         private void SubscribeUI()
         {
             var topGamePanel = _gameUIController.GetPanel<TopGamePanel>();
@@ -45,7 +46,7 @@ namespace Project.Scripts.Core.Scenes.Game.States
             settingsPopup.OnRestartClick += RestartLevel;
             settingsPopup.OnExitClick += ExitLevel;
         }
-        
+
         private void UnsubscribeUI()
         {
             var topGamePanel = _gameUIController.GetPanel<TopGamePanel>();
@@ -55,7 +56,7 @@ namespace Project.Scripts.Core.Scenes.Game.States
             settingsPopup.OnRestartClick -= RestartLevel;
             settingsPopup.OnExitClick -= ExitLevel;
         }
-        
+
         private void ShowSettings()
         {
             _gameUIController.ShowPanel<GameSettingsPopup>();

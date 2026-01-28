@@ -1,7 +1,7 @@
 ﻿using System;
 using Project.Scripts.Core.Events;
 using Project.Scripts.Core.Infrastructure.Configs;
-using Project.Scripts.Gameplay.UnitsGeneration;
+using Project.Scripts.Gameplay.Factory;
 using UnityEngine;
 using Zenject;
 
@@ -24,7 +24,7 @@ namespace Project.Scripts.Gameplay
 
         [SerializeField]
         private UnitsFactory _unitsFactory;
-        
+
         [Inject] private GlobalEventProvider _globalEventProvider;
         [Inject] private IConfigsProvider _configsProvider;
 
@@ -38,6 +38,7 @@ namespace Project.Scripts.Gameplay
         {
             _unitsFactory.Initialize();
             _unitsController.Initialize(_unitsFactory);
+            _unitsController.OnOneTeamAlive += OnOneTeamAlive;
         }
 
         public void GenerateLevel()
@@ -51,6 +52,7 @@ namespace Project.Scripts.Gameplay
             if (_isGameComplete)
                 return;
 
+            //_unitsController.ClearUnits();
             _isGameComplete = isWin;
             OnGameOver?.Invoke(isWin);
         }
@@ -58,6 +60,11 @@ namespace Project.Scripts.Gameplay
         private void Start()
         {
             _isLoadComplete = true;
+        }
+
+        private void OnOneTeamAlive()
+        {
+            SetGameOver(true);
         }
     }
 }

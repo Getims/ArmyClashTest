@@ -16,6 +16,11 @@ namespace Project.Scripts.Gameplay.Units
         [SerializeField]
         private MeshRenderer _meshRenderer;
 
+        [SerializeField]
+        private Collider _collider;
+
+        public Collider Collider => _collider;
+
         public void SetModelSize(float scale)
         {
             _modelContainer.SetLocalSize(scale);

@@ -1,4 +1,4 @@
-namespace Project.Scripts.Configs.Gameplay
+namespace Project.Scripts.Core.Enums
 {
     public enum UnitStat
     {

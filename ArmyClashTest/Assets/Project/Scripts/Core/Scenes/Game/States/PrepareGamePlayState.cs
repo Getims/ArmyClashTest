@@ -3,10 +3,8 @@ using Project.Scripts.Core.Constants;
 using Project.Scripts.Core.Infrastructure.Services;
 using Project.Scripts.Core.Infrastructure.StateMachines;
 using Project.Scripts.Core.Infrastructure.StateMachines.States;
-using Project.Scripts.Data;
 using Project.Scripts.Gameplay;
 using Project.Scripts.UI.Game;
-using Project.Scripts.UI.Game.Settings;
 using UnityEngine;
 
 namespace Project.Scripts.Core.Scenes.Game.States
@@ -58,6 +56,5 @@ namespace Project.Scripts.Core.Scenes.Game.States
             _stateMachine.Enter<GamePlayState>();
             yield return null;
         }
-       
     }
 }
