@@ -8,9 +8,6 @@ namespace Project.Scripts.Configs
     [Serializable]
     public class GlobalConfig : ScriptableConfig
     {
-        [SerializeField]
-        private bool _enableDebug;
-
         [SerializeField, MinValue(1)]
         private int _unitsCountPerTeam = 20;
 
@@ -21,7 +18,6 @@ namespace Project.Scripts.Configs
         [SerializeField]
         private float _attackSpeedPointValue = 1;
 
-        public bool EnableDebug => _enableDebug;
         public float SpeedPointValue => _speedPointValue;
         public float AttackSpeedPointValue => _attackSpeedPointValue;
         public int UnitsCountPerTeam => _unitsCountPerTeam;
