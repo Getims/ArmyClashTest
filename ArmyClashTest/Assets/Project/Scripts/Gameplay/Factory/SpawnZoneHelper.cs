@@ -10,27 +10,28 @@ namespace Project.Scripts.Gameplay.Factory
             List<Vector3> positions = new List<Vector3>();
             float rectWidth = size.x;
             float rectHeight = size.z;
-            float rectArea = rectWidth * rectHeight;
-            float squareSide = Mathf.Sqrt(rectArea / count);
+            
+            int cols = Mathf.CeilToInt(Mathf.Sqrt(count * rectWidth / rectHeight));
+            int rows = Mathf.CeilToInt((float)count / cols);
 
-            int cols = Mathf.FloorToInt(rectWidth / squareSide);
-            int rows = Mathf.FloorToInt(rectHeight / squareSide);
+            float stepX = rectWidth / cols;
+            float stepZ = rectHeight / rows;
 
-            float startX = center.x - rectWidth / 2 + squareSide / 2;
-            float startZ = center.z - rectHeight / 2 + squareSide / 2;
+            float startX = center.x - rectWidth / 2 + stepX / 2;
+            float startZ = center.z - rectHeight / 2 + stepZ / 2;
 
             int placed = 0;
             for (int i = 0; i < rows && placed < count; i++)
             {
                 for (int j = 0; j < cols && placed < count; j++)
                 {
-                    float x = startX + j * squareSide;
-                    float z = startZ + i * squareSide;
+                    float x = startX + j * stepX;
+                    float z = startZ + i * stepZ;
                     positions.Add(new Vector3(x, center.y, z));
                     placed++;
                 }
             }
-
+            
             return positions;
         }
     }

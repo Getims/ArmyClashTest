@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FileName: GlobalConfig
   _enableDebug: 1
-  _volumeConfig: {fileID: 11400000, guid: 2a8fcb2fd932c2d4abd7a1c54f2a7bc9, type: 2}
-  _audioClipsListConfig: {fileID: 11400000, guid: ed4b1594620c35542af67adb2990af77, type: 2}
+  _unitsCountPerTeam: 20
+  _speedPointValue: 1
+  _attackSpeedPointValue: 1

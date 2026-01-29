@@ -54,9 +54,12 @@ namespace Project.Scripts.Gameplay.Units
             _unitInfo.AddStats(shapeConfig.StatConfigs);
             _unitInfo.AddStats(sizeConfig.StatConfigs);
             _unitInfo.AddStats(colorConfig.StatConfigs);
-            _unitInfo.SetColliderSize(_unitVisual.Collider.bounds.extents.magnitude);
+            _unitInfo.SetSize(sizeConfig.ModelSize);
 
             _healthController = new HealthController(_unitInfo);
+            _healthController.OnHealthChanged += OnHealthChanged;
+            OnHealthChanged();
+            
             _moveController.Initialize(_unitInfo, globalConfig.SpeedPointValue);
             _attackController = new AttackController(_unitInfo, globalConfig.AttackSpeedPointValue);
         }
@@ -77,7 +80,7 @@ namespace Project.Scripts.Gameplay.Units
                 return false;
 
             float distance = Vector3.Distance(Position, _unitInfo.Target.Position);
-            float attackRange = _unitInfo.ColliderSize + _unitInfo.Target.UnitInfo.ColliderSize + 0.5f;
+            float attackRange = (_unitInfo.Size + _unitInfo.Target.UnitInfo.Size)*0.55f;
 
             if (distance > attackRange)
                 return false;
@@ -96,6 +99,11 @@ namespace Project.Scripts.Gameplay.Units
         public void MoveTowards(float deltaTime)
         {
             _moveController.MoveTowards(deltaTime);
+        }
+        
+        private void OnHealthChanged()
+        {
+            _unitVisual.UpdateHealth(_healthController.Health);
         }
     }
 }

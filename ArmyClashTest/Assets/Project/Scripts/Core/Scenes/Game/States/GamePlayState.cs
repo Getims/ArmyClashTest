@@ -22,6 +22,7 @@ namespace Project.Scripts.Core.Scenes.Game.States
 
         public void Enter()
         {
+            _gameFlowController.StartBattle();
             _gameFlowController.OnGameOver += OnGameOver;
             SubscribeUI();
         }
@@ -39,7 +40,7 @@ namespace Project.Scripts.Core.Scenes.Game.States
 
         private void SubscribeUI()
         {
-            var topGamePanel = _gameUIController.GetPanel<TopGamePanel>();
+            var topGamePanel = _gameUIController.ShowPanel<TopGamePanel>();
             topGamePanel.OnSettingsClick += ShowSettings;
 
             var settingsPopup = _gameUIController.GetPanel<GameSettingsPopup>();

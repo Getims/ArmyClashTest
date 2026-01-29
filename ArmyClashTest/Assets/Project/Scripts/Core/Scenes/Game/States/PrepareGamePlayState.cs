@@ -39,6 +39,11 @@ namespace Project.Scripts.Core.Scenes.Game.States
         {
             if (_levelCreationCO != null)
                 _coroutineRunner?.StopCoroutine(_levelCreationCO);
+            
+            var prestartPanel = _gameUIController.GetPanel<PrestartPanel>();
+            prestartPanel.OnRandomClick -= RandomLevel;
+            prestartPanel.OnStartClick -= StartLevel;
+            prestartPanel.Hide();
         }
 
         private IEnumerator CreateLevel()
@@ -52,9 +57,26 @@ namespace Project.Scripts.Core.Scenes.Game.States
             while (_gameFlowController.IsLoadComplete == false)
                 yield return new WaitForEndOfFrame();
 
-            _gameFlowController.GenerateLevel();
-            _stateMachine.Enter<GamePlayState>();
+            _gameFlowController.GenerateUnits();
+            ShowPrestartPanel();
             yield return null;
+        }
+
+        private void ShowPrestartPanel()
+        {
+            var prestartPanel = _gameUIController.ShowPanel<PrestartPanel>();
+            prestartPanel.OnRandomClick += RandomLevel;
+            prestartPanel.OnStartClick += StartLevel;
+        }
+
+        private void StartLevel()
+        {
+            _stateMachine.Enter<GamePlayState>();
+        }
+
+        private void RandomLevel()
+        {
+            _gameFlowController.GenerateUnits();
         }
     }
 }

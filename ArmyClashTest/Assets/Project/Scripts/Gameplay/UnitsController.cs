@@ -31,9 +31,14 @@ namespace Project.Scripts.Gameplay
 
         public void CreateUnits()
         {
+            ClearUnits();
             CreateUnits(UnitTeam.Team1, _unitsCountPerTeam);
             CreateUnits(UnitTeam.Team2, _unitsCountPerTeam);
-            _state = State.Work;
+        }
+
+        public void StartBattle()
+        {
+            _state = State.Battle;
         }
 
         public void ClearUnits()
@@ -41,9 +46,7 @@ namespace Project.Scripts.Gameplay
             foreach (var kvp in _unitsDictionary)
             {
                 foreach (var unit in kvp.Value)
-                {
                     _unitsFactory.ReturnUnit(unit);
-                }
             }
 
             _unitsDictionary.Clear();
@@ -51,7 +54,7 @@ namespace Project.Scripts.Gameplay
 
         private void Update()
         {
-            if (_state != State.Work)
+            if (_state != State.Battle)
                 return;
 
             int aliveTeamsCount = 0;
@@ -161,7 +164,7 @@ namespace Project.Scripts.Gameplay
         private enum State
         {
             Initialization,
-            Work,
+            Battle,
             Stop
         }
     }

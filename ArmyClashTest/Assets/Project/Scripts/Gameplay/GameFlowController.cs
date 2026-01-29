@@ -12,7 +12,8 @@ namespace Project.Scripts.Gameplay
         bool IsLoadComplete { get; }
 
         void Initialize();
-        void GenerateLevel();
+        void GenerateUnits();
+        void StartBattle();
         void SetGameOver(bool isWin);
         event Action<bool> OnGameOver;
     }
@@ -39,12 +40,17 @@ namespace Project.Scripts.Gameplay
             _unitsFactory.Initialize();
             _unitsController.Initialize(_unitsFactory);
             _unitsController.OnOneTeamAlive += OnOneTeamAlive;
+            _isGameComplete = false;
         }
 
-        public void GenerateLevel()
+        public void GenerateUnits()
         {
             _unitsController.CreateUnits();
-            _isGameComplete = false;
+        }
+
+        public void StartBattle()
+        {
+            _unitsController.StartBattle();
         }
 
         public void SetGameOver(bool isWin)

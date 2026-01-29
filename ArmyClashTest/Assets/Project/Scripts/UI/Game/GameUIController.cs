@@ -14,7 +14,6 @@ namespace Project.Scripts.UI.Game
     {
         public void Initialize()
         {
-            ShowPanel<TopGamePanel>();
         }
     }
 }

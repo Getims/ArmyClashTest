@@ -16,7 +16,6 @@ namespace Project.Scripts.Gameplay.Units
         public HealthController(UnitInfo unitInfo)
         {
             _health = unitInfo.GetStat(UnitStat.HP);
-
             if (_health == 0)
                 Debug.LogWarning($"Dead on start {unitInfo.Name}");
         }

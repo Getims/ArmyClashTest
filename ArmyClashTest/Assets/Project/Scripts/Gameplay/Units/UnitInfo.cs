@@ -9,11 +9,11 @@ namespace Project.Scripts.Gameplay.Units
         private Dictionary<UnitStat, int> _stats = new Dictionary<UnitStat, int>();
         private IUnit _target;
         private string _name;
-        private float _colliderSize;
+        private float _size;
 
         public IUnit Target => _target;
         public string Name => _name;
-        public float ColliderSize => _colliderSize;
+        public float Size => _size;
 
         public void AddStat(UnitStat unitStat, int value)
         {
@@ -47,9 +47,9 @@ namespace Project.Scripts.Gameplay.Units
             _name = name;
         }
 
-        public void SetColliderSize(float boundsExtents)
+        public void SetSize(float size)
         {
-            _colliderSize = boundsExtents;
+            _size = size;
         }
     }
 }

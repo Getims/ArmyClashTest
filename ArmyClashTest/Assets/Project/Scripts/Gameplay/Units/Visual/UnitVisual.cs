@@ -17,9 +17,7 @@ namespace Project.Scripts.Gameplay.Units
         private MeshRenderer _meshRenderer;
 
         [SerializeField]
-        private Collider _collider;
-
-        public Collider Collider => _collider;
+        private HealthView _healthView;
 
         public void SetModelSize(float scale)
         {
@@ -42,6 +40,11 @@ namespace Project.Scripts.Gameplay.Units
         public void SetColor(Color color)
         {
             _meshRenderer.material.color = color;
+        }
+
+        public void UpdateHealth(int amount)
+        {
+            _healthView.SetHealth(amount);
         }
     }
 }
