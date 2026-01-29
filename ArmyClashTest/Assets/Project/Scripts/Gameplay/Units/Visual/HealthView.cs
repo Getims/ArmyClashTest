@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Project.Scripts.Gameplay.Units
+namespace Project.Scripts.Gameplay.Units.Visual
 {
     public class HealthView : MonoBehaviour
     {

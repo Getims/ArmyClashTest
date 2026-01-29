@@ -2,7 +2,7 @@ using System;
 using Project.Scripts.Core.Utilities;
 using UnityEngine;
 
-namespace Project.Scripts.Gameplay.Units
+namespace Project.Scripts.Gameplay.Units.Visual
 {
     [Serializable]
     public class UnitVisual

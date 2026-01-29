@@ -1,5 +1,7 @@
 using Project.Scripts.Configs;
 using Project.Scripts.Configs.Gameplay;
+using Project.Scripts.Gameplay.Units.Controllers;
+using Project.Scripts.Gameplay.Units.Visual;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -18,6 +20,7 @@ namespace Project.Scripts.Gameplay.Units
         void Attack();
         void MoveTowards(float deltaTime);
         void Hit(int damage);
+        void StopMoving();
     }
 
     public class Unit : MonoBehaviour, IUnit
@@ -26,7 +29,7 @@ namespace Project.Scripts.Gameplay.Units
         private UnitVisual _unitVisual;
 
         [SerializeField]
-        private MoveController _moveController;
+        private MoveControllerAI _moveController;
 
         private HealthController _healthController;
         private AttackController _attackController;
@@ -59,7 +62,7 @@ namespace Project.Scripts.Gameplay.Units
             _healthController = new HealthController(_unitInfo);
             _healthController.OnHealthChanged += OnHealthChanged;
             OnHealthChanged();
-            
+
             _moveController.Initialize(_unitInfo, globalConfig.SpeedPointValue);
             _attackController = new AttackController(_unitInfo, globalConfig.AttackSpeedPointValue);
         }
@@ -67,6 +70,11 @@ namespace Project.Scripts.Gameplay.Units
         public void Hit(int damage)
         {
             _healthController.Hit(damage);
+        }
+
+        public void StopMoving()
+        {
+            _moveController.StopMoving();
         }
 
         public void SetTarget(IUnit target)
@@ -79,13 +87,7 @@ namespace Project.Scripts.Gameplay.Units
             if (_unitInfo.Target == null)
                 return false;
 
-            float distance = Vector3.Distance(Position, _unitInfo.Target.Position);
-            float attackRange = (_unitInfo.Size + _unitInfo.Target.UnitInfo.Size)*0.55f;
-
-            if (distance > attackRange)
-                return false;
-
-            return true;
+            return ReachAttackDistance();
         }
 
         public void Attack()
@@ -98,9 +100,20 @@ namespace Project.Scripts.Gameplay.Units
 
         public void MoveTowards(float deltaTime)
         {
-            _moveController.MoveTowards(deltaTime);
+            if (_unitInfo.Target == null || ReachAttackDistance())
+                _moveController.StopMoving();
+            else
+                _moveController.MoveTowards(deltaTime);
         }
-        
+
+        private bool ReachAttackDistance()
+        {
+            float distance = Vector3.Distance(Position, _unitInfo.Target.Position);
+            float attackRange = (_unitInfo.Size + _unitInfo.Target.UnitInfo.Size) * 0.55f;
+
+            return distance <= attackRange;
+        }
+
         private void OnHealthChanged()
         {
             _unitVisual.UpdateHealth(_healthController.Health);

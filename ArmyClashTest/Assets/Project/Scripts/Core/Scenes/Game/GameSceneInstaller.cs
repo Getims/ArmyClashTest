@@ -23,6 +23,8 @@ namespace Project.Scripts.Core.Scenes.Game
         {
             Container.Bind<IGameFlowController>().FromInstance(_gameFlowController).AsSingle().NonLazy();
             Container.Bind<IGameUIController>().FromInstance(_gameUIController).AsSingle().NonLazy();
+
+            Container.BindInterfacesTo<GameInfoService>().AsSingle().NonLazy();
         }
 
         private void CreateSceneBootstrapper()

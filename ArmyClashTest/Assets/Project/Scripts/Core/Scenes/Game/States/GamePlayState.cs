@@ -3,6 +3,7 @@ using Project.Scripts.Core.Infrastructure.StateMachines.States;
 using Project.Scripts.Gameplay;
 using Project.Scripts.UI.Game;
 using Project.Scripts.UI.Game.Settings;
+using Project.Scripts.UI.Game.Top;
 
 namespace Project.Scripts.Core.Scenes.Game.States
 {
@@ -33,9 +34,9 @@ namespace Project.Scripts.Core.Scenes.Game.States
             UnsubscribeUI();
         }
 
-        private void OnGameOver(bool isWin)
+        private void OnGameOver()
         {
-            _stateMachine.Enter<GameOverState, bool>(isWin);
+            _stateMachine.Enter<GameOverState>();
         }
 
         private void SubscribeUI()

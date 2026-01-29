@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Project.Scripts.Core.Constants;
 using Project.Scripts.Core.Enums;
 using Project.Scripts.Core.Infrastructure.Configs;
 using Sirenix.OdinInspector;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 namespace Project.Scripts.Configs.Gameplay
 {
+    [ConfigCategory(ConfigCategory.Game)]
     public class ShapeConfig : ScriptableConfig
     {
         [SerializeField]

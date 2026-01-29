@@ -13,7 +13,7 @@ namespace Project.Scripts.DebugModule
     public class GameplayCheatConsole : ACheatConsole
     {
         [Inject] private IDatabase _database;
-        [Inject] private ILevelsDataService _levelsDataService;
+        [Inject] private IGameDataService _gameDataService;
         [Inject] private IConfigsProvider _configsProvider;
         [Inject] private GameStateMachine _stateMachine;
         [Inject] private IGameFlowController _gameFlowController;

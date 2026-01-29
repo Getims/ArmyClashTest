@@ -43,7 +43,7 @@ namespace Project.Scripts.Core.Scenes.Core
 
         private void BindServices()
         {
-            Container.BindInterfacesTo<LevelsDataService>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<GameDataService>().AsSingle().NonLazy();
         }
 
         private void BindDatabase()

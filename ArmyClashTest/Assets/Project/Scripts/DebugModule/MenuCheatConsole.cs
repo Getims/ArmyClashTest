@@ -10,7 +10,7 @@ namespace Project.Scripts.DebugModule
     public class MenuCheatConsole : ACheatConsole
     {
         [Inject] private IDatabase _database;
-        [Inject] private ILevelsDataService _levelsDataService;
+        [Inject] private IGameDataService _gameDataService;
 
         public override List<ICheat> CreateCheats()
         {

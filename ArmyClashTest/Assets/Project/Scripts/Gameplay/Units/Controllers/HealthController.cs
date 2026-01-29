@@ -2,7 +2,7 @@ using System;
 using Project.Scripts.Core.Enums;
 using UnityEngine;
 
-namespace Project.Scripts.Gameplay.Units
+namespace Project.Scripts.Gameplay.Units.Controllers
 {
     [Serializable]
     public class HealthController

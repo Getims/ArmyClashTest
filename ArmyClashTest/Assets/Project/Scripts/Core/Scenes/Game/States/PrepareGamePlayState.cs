@@ -39,7 +39,7 @@ namespace Project.Scripts.Core.Scenes.Game.States
         {
             if (_levelCreationCO != null)
                 _coroutineRunner?.StopCoroutine(_levelCreationCO);
-            
+
             var prestartPanel = _gameUIController.GetPanel<PrestartPanel>();
             prestartPanel.OnRandomClick -= RandomLevel;
             prestartPanel.OnStartClick -= StartLevel;

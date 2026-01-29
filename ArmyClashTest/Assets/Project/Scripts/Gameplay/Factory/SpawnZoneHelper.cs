@@ -10,7 +10,7 @@ namespace Project.Scripts.Gameplay.Factory
             List<Vector3> positions = new List<Vector3>();
             float rectWidth = size.x;
             float rectHeight = size.z;
-            
+
             int cols = Mathf.CeilToInt(Mathf.Sqrt(count * rectWidth / rectHeight));
             int rows = Mathf.CeilToInt((float)count / cols);
 
@@ -31,7 +31,7 @@ namespace Project.Scripts.Gameplay.Factory
                     placed++;
                 }
             }
-            
+
             return positions;
         }
     }

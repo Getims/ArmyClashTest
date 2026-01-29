@@ -14,8 +14,8 @@ namespace Project.Scripts.Gameplay
         void Initialize();
         void GenerateUnits();
         void StartBattle();
-        void SetGameOver(bool isWin);
-        event Action<bool> OnGameOver;
+        void SetGameOver();
+        event Action OnGameOver;
     }
 
     public class GameFlowController : MonoBehaviour, IGameFlowController
@@ -28,18 +28,18 @@ namespace Project.Scripts.Gameplay
 
         [Inject] private GlobalEventProvider _globalEventProvider;
         [Inject] private IConfigsProvider _configsProvider;
+        [Inject] private IGameInfoService _gameInfoService;
 
         private bool _isGameComplete = false;
         private bool _isLoadComplete = false;
 
         public bool IsLoadComplete => _isLoadComplete;
-        public event Action<bool> OnGameOver;
+        public event Action OnGameOver;
 
         public void Initialize()
         {
             _unitsFactory.Initialize();
             _unitsController.Initialize(_unitsFactory);
-            _unitsController.OnOneTeamAlive += OnOneTeamAlive;
             _isGameComplete = false;
         }
 
@@ -53,24 +53,27 @@ namespace Project.Scripts.Gameplay
             _unitsController.StartBattle();
         }
 
-        public void SetGameOver(bool isWin)
+        public void SetGameOver()
         {
             if (_isGameComplete)
                 return;
 
-            //_unitsController.ClearUnits();
-            _isGameComplete = isWin;
-            OnGameOver?.Invoke(isWin);
+            _unitsController.StopBattle();
+            _isGameComplete = true;
+            OnGameOver?.Invoke();
         }
 
         private void Start()
         {
             _isLoadComplete = true;
+            _gameInfoService.OnOneTeamAlive += OnOneTeamAlive;
         }
 
-        private void OnOneTeamAlive()
+        private void OnDestroy()
         {
-            SetGameOver(true);
+            _gameInfoService.OnOneTeamAlive -= OnOneTeamAlive;
         }
+
+        private void OnOneTeamAlive() => SetGameOver();
     }
 }

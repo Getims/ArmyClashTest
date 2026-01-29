@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Project.Scripts.Configs;
 using Project.Scripts.Core.Enums;
@@ -13,13 +12,12 @@ namespace Project.Scripts.Gameplay
     public class UnitsController : MonoBehaviour
     {
         [Inject] private IConfigsProvider _configsProvider;
+        [Inject] private IGameInfoService _gameInfoService;
 
         private Dictionary<UnitTeam, List<IUnit>> _unitsDictionary = new Dictionary<UnitTeam, List<IUnit>>();
         private IUnitsFactory _unitsFactory;
         private int _unitsCountPerTeam;
         private State _state = State.Initialization;
-
-        public event Action OnOneTeamAlive;
 
         public void Initialize(IUnitsFactory unitsFactory)
         {
@@ -41,6 +39,17 @@ namespace Project.Scripts.Gameplay
             _state = State.Battle;
         }
 
+        public void StopBattle()
+        {
+            foreach (var kvp in _unitsDictionary)
+            {
+                foreach (var unit in kvp.Value)
+                    unit.StopMoving();
+            }
+
+            _state = State.Stop;
+        }
+
         public void ClearUnits()
         {
             foreach (var kvp in _unitsDictionary)
@@ -57,19 +66,10 @@ namespace Project.Scripts.Gameplay
             if (_state != State.Battle)
                 return;
 
-            int aliveTeamsCount = 0;
-
             foreach (var kvp in _unitsDictionary)
             {
                 UpdateUnitsTeam(kvp.Key, kvp.Value);
-                if (kvp.Value.Count > 0)
-                    aliveTeamsCount++;
-            }
-
-            if (aliveTeamsCount == 1)
-            {
-                OnOneTeamAlive?.Invoke();
-                _state = State.Stop;
+                _gameInfoService.UpdateTeamInfo(kvp.Key, kvp.Value.Count);
             }
         }
 
@@ -90,13 +90,18 @@ namespace Project.Scripts.Gameplay
                     unit.SetTarget(FindClosestEnemy(unit, enemyUnits));
                 }
 
+                unit.MoveTowards(Time.deltaTime);
+
                 if (unit.HasTarget == false)
+                {
                     continue;
+                }
 
                 if (unit.CanAttack())
+                {
+                    unit.StopMoving();
                     unit.Attack();
-                else
-                    unit.MoveTowards(Time.deltaTime);
+                }
             }
 
             foreach (var unit in unitsToRemove)

@@ -1,35 +1,58 @@
-﻿using Project.Scripts.Core.Infrastructure.StateMachines;
+﻿using Project.Scripts.Core.Enums;
+using Project.Scripts.Core.Infrastructure.StateMachines;
 using Project.Scripts.Core.Infrastructure.StateMachines.States;
+using Project.Scripts.Data;
+using Project.Scripts.Gameplay;
 using Project.Scripts.UI.Game;
 using Project.Scripts.UI.Game.Settings;
-using UnityEngine;
+using Project.Scripts.UI.Game.Top;
 
 namespace Project.Scripts.Core.Scenes.Game.States
 {
-    public class GameOverState : IEnterState<bool>, IExitState
+    public class GameOverState : IEnterState, IExitState
     {
         private readonly GameStateMachine _stateMachine;
 
         private LevelCompletePanel _levelCompletePanel;
         private IGameUIController _gameUIController;
+        private IGameDataService _gameDataService;
+        private IGameInfoService _gameInfoService;
 
-        public GameOverState(GameStateMachine stateMachine, IGameUIController gameUIController)
+        public GameOverState(GameStateMachine stateMachine, IGameUIController gameUIController,
+            IGameDataService gameDataService, IGameInfoService gameInfoService)
         {
+            _gameInfoService = gameInfoService;
+            _gameDataService = gameDataService;
             _gameUIController = gameUIController;
             _stateMachine = stateMachine;
         }
 
-        public void Enter(bool isWin)
+        public void Enter()
         {
+            SaveData();
             HideGameHud();
-            if (isWin)
-                CreateLevelCompletePanel();
-            else
-                CreateLevelFailPanel();
+            CreateLevelCompletePanel();
         }
 
         public void Exit()
         {
+        }
+
+        private void SaveData()
+        {
+            _gameDataService.BattlesCount.Set(_gameDataService.BattlesCount.Value + 1);
+
+            UnitTeam winner = UnitTeam.Team1;
+            foreach (var teamInfo in _gameInfoService.UnitsDictionary)
+            {
+                if (teamInfo.Value > 0)
+                {
+                    winner = teamInfo.Key;
+                    break;
+                }
+            }
+
+            _gameDataService.AddTeamWin(winner);
         }
 
         private void HideGameHud()
@@ -46,12 +69,6 @@ namespace Project.Scripts.Core.Scenes.Game.States
             _levelCompletePanel = _gameUIController.GetPanel<LevelCompletePanel>();
             _levelCompletePanel.OnClaimClick += OnLevelComplete;
             _levelCompletePanel.Show();
-        }
-
-        private void CreateLevelFailPanel()
-        {
-            Debug.Log("Add level fail panel if needed");
-            CreateLevelCompletePanel();
         }
 
         private void OnLevelComplete()

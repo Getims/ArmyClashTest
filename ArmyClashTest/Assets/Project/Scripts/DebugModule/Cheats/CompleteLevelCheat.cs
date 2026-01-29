@@ -9,7 +9,7 @@ namespace Project.Scripts.DebugModule.Cheats
         private IGameFlowController _gameFlowController;
 
         public CheatGroupType GroupType => CheatGroupType.Gameplay;
-        public string Name => "Complete Level";
+        public string Name => "Complete battle";
 
         public CompleteLevelCheat(IGameFlowController gameFlowController)
         {
@@ -18,7 +18,7 @@ namespace Project.Scripts.DebugModule.Cheats
 
         public void Execute()
         {
-            _gameFlowController.SetGameOver(true);
+            _gameFlowController.SetGameOver();
         }
 
         public void Initialize(Action restartScene)
