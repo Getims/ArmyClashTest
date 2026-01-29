@@ -18,7 +18,6 @@ namespace Project.Scripts.Gameplay
 
         public event Action OnOneTeamAlive;
         public event Action OnUnitsCountUpdate;
-
         public IReadOnlyDictionary<UnitTeam, int> UnitsDictionary => _unitsDictionary;
 
         public void UpdateTeamInfo(UnitTeam unitTeam, int count)
