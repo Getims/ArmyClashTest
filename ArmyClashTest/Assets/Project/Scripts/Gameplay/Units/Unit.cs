@@ -1,6 +1,7 @@
 using Project.Scripts.Configs;
 using Project.Scripts.Configs.Gameplay;
-using Project.Scripts.Gameplay.Units.Controllers;
+using Project.Scripts.Gameplay.Units.Data;
+using Project.Scripts.Gameplay.Units.Systems.Local;
 using Project.Scripts.Gameplay.Units.Visual;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -29,17 +30,17 @@ namespace Project.Scripts.Gameplay.Units
         private UnitVisual _unitVisual;
 
         [SerializeField]
-        private MoveControllerAI _moveController;
+        private UnitMoveSystemAI _unitMoveSystem;
 
-        private HealthController _healthController;
-        private AttackController _attackController;
+        private UnitHealthSystem _unitHealthSystem;
+        private UnitAttackSystem _unitAttackSystem;
         private UnitInfo _unitInfo;
 
         public GameObject GameObject => gameObject;
         public UnitInfo UnitInfo => _unitInfo;
-        public bool IsAlive => _healthController.IsAlive;
+        public bool IsAlive => _unitHealthSystem.IsAlive;
         public bool HasTarget => _unitInfo.Target != null;
-        public Vector3 Position => _moveController.Transform.position;
+        public Vector3 Position => _unitMoveSystem.Transform.position;
 
         [Button]
         public void Initialize(UnitConfig unitConfig, ShapeConfig shapeConfig, SizeConfig sizeConfig,
@@ -59,64 +60,29 @@ namespace Project.Scripts.Gameplay.Units
             _unitInfo.AddStats(colorConfig.StatConfigs);
             _unitInfo.SetSize(sizeConfig.ModelSize);
 
-            _healthController = new HealthController(_unitInfo);
-            _healthController.OnHealthChanged += OnHealthChanged;
-            OnHealthChanged();
+            _unitHealthSystem = new UnitHealthSystem(_unitInfo);
+            _unitHealthSystem.OnHealthChanged += OnUnitHealthChanged;
+            OnUnitHealthChanged();
 
-            _moveController.Initialize(_unitInfo, globalConfig.SpeedPointValue);
-            _attackController = new AttackController(_unitInfo, globalConfig.AttackSpeedPointValue);
+            _unitMoveSystem.Initialize(_unitInfo, globalConfig.SpeedPointValue);
+            _unitAttackSystem = new UnitAttackSystem(_unitInfo, globalConfig.AttackSpeedPointValue);
         }
 
-        public void Hit(int damage)
+        public void Hit(int damage) => _unitHealthSystem.Hit(damage);
+
+        public void StopMoving() => _unitMoveSystem.StopMoving();
+
+        public void SetTarget(IUnit target) => _unitInfo.SetTarget(target);
+
+        public bool CanAttack() => _unitInfo.Target != null && _unitAttackSystem.ReachAttackDistance(Position);
+
+        public void Attack() => _unitAttackSystem.Attack();
+
+        public void MoveTowards(float deltaTime) => _unitMoveSystem.MoveTowards(deltaTime);
+
+        private void OnUnitHealthChanged()
         {
-            _healthController.Hit(damage);
-        }
-
-        public void StopMoving()
-        {
-            _moveController.StopMoving();
-        }
-
-        public void SetTarget(IUnit target)
-        {
-            _unitInfo.SetTarget(target);
-        }
-
-        public bool CanAttack()
-        {
-            if (_unitInfo.Target == null)
-                return false;
-
-            return ReachAttackDistance();
-        }
-
-        public void Attack()
-        {
-            _attackController.Attack();
-
-            if (UnitInfo.Target != null && UnitInfo.Target.IsAlive == false)
-                UnitInfo.SetTarget(null);
-        }
-
-        public void MoveTowards(float deltaTime)
-        {
-            if (_unitInfo.Target == null || ReachAttackDistance())
-                _moveController.StopMoving();
-            else
-                _moveController.MoveTowards(deltaTime);
-        }
-
-        private bool ReachAttackDistance()
-        {
-            float distance = Vector3.Distance(Position, _unitInfo.Target.Position);
-            float attackRange = (_unitInfo.Size + _unitInfo.Target.UnitInfo.Size) * 0.55f;
-
-            return distance <= attackRange;
-        }
-
-        private void OnHealthChanged()
-        {
-            _unitVisual.UpdateHealth(_healthController.Health);
+            _unitVisual.UpdateHealth(_unitHealthSystem.Health);
         }
     }
 }

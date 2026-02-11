@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Project.Scripts.Core.Enums;
 
-namespace Project.Scripts.Gameplay
+namespace Project.Scripts.Gameplay.GameFlow.Logic
 {
     public interface IGameInfoService
     {

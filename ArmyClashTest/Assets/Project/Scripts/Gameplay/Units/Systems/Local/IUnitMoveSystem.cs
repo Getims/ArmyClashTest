@@ -1,8 +1,9 @@
+using Project.Scripts.Gameplay.Units.Data;
 using UnityEngine;
 
-namespace Project.Scripts.Gameplay.Units.Controllers
+namespace Project.Scripts.Gameplay.Units.Systems.Local
 {
-    public interface IMoveController
+    public interface IUnitMoveSystem
     {
         Transform Transform { get; }
         void Initialize(UnitInfo unitInfo, float speedPointValue);

@@ -1,4 +1,6 @@
 ﻿using Project.Scripts.Gameplay;
+using Project.Scripts.Gameplay.GameFlow;
+using Project.Scripts.Gameplay.GameFlow.Logic;
 using Project.Scripts.UI.Game;
 using UnityEngine;
 using Zenject;
@@ -21,7 +23,7 @@ namespace Project.Scripts.Core.Scenes.Game
 
         private void BindSceneObjects()
         {
-            Container.Bind<IGameFlowController>().FromInstance(_gameFlowController).AsSingle().NonLazy();
+            Container.Bind<IGameFlow>().FromInstance(_gameFlowController).AsSingle().NonLazy();
             Container.Bind<IGameUIController>().FromInstance(_gameUIController).AsSingle().NonLazy();
 
             Container.BindInterfacesTo<GameInfoService>().AsSingle().NonLazy();

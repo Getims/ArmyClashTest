@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Project.Scripts.Configs.Gameplay;
 using Project.Scripts.Core.Enums;
 
-namespace Project.Scripts.Gameplay.Units
+namespace Project.Scripts.Gameplay.Units.Data
 {
     public class UnitInfo
     {

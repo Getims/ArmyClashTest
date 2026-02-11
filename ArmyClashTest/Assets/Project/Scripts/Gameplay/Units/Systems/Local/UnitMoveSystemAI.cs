@@ -1,14 +1,19 @@
 using System;
 using Project.Scripts.Core.Enums;
+using Project.Scripts.Gameplay.Units.Data;
 using UnityEngine;
+using UnityEngine.AI;
 
-namespace Project.Scripts.Gameplay.Units.Controllers
+namespace Project.Scripts.Gameplay.Units.Systems.Local
 {
     [Serializable]
-    public class MoveController : IMoveController
+    public class UnitMoveSystemAI : IUnitMoveSystem
     {
         [SerializeField]
         private Transform _unitTransform;
+
+        [SerializeField]
+        private NavMeshAgent _navMeshAgent;
 
         private UnitInfo _unitInfo;
         private float _speed;
@@ -19,21 +24,23 @@ namespace Project.Scripts.Gameplay.Units.Controllers
         {
             _unitInfo = unitInfo;
             _speed = speedPointValue * _unitInfo.GetStat(UnitStat.SPEED);
+            _navMeshAgent.speed = _speed;
+            _navMeshAgent.radius = _unitInfo.Size * 0.5f;
         }
 
         public void MoveTowards(float deltaTime)
         {
-            var currentPosition = _unitTransform.position;
             var targetPosition = _unitInfo.Target.Position;
-            var direction = (targetPosition - currentPosition).normalized;
-
-            _unitTransform.position = Vector3.MoveTowards(currentPosition, targetPosition, _speed * deltaTime);
-            _unitTransform.rotation = Quaternion.LookRotation(direction);
+            _navMeshAgent.SetDestination(targetPosition);
         }
 
         public void StopMoving()
         {
-            // For this controller, movement is handled each frame, so no special stop action is needed.
+            if (_navMeshAgent.hasPath)
+            {
+                _navMeshAgent.isStopped = true;
+                _navMeshAgent.ResetPath();
+            }
         }
     }
 }

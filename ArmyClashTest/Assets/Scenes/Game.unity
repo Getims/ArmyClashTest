@@ -656,7 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitsController: {fileID: 1923681323215146777}
-  _unitsFactory: {fileID: 4880544847874741413}
+  _unitsFactoryController: {fileID: 4880544847874741413}
 --- !u!4 &1544873528
 Transform:
   m_ObjectHideFlags: 0

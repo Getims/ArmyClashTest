@@ -1,8 +1,9 @@
 using Project.Scripts.Core.Enums;
+using Project.Scripts.Gameplay.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Project.Scripts.Gameplay.Units
+namespace Project.Scripts.Gameplay.Debug
 {
     [RequireComponent(typeof(Unit))]
     public class UnitDebug : MonoBehaviour

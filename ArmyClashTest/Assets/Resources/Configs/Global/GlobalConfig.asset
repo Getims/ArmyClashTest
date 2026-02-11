@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: GlobalConfig
   m_EditorClassIdentifier: 
   FileName: GlobalConfig
-  _enableDebug: 1
-  _unitsCountPerTeam: 20
+  _unitsCountPerTeam: 5
   _speedPointValue: 1
   _attackSpeedPointValue: 1

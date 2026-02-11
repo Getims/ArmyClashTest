@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Project.Scripts.Gameplay.Factory.Utils;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
-namespace Project.Scripts.Gameplay.Factory
+namespace Project.Scripts.Gameplay.Debug
 {
     public class SpawnZoneGizmo : MonoBehaviour
     {

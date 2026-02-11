@@ -1,6 +1,7 @@
 ﻿using Project.Scripts.Core.Infrastructure.StateMachines;
 using Project.Scripts.Core.Infrastructure.StateMachines.States;
 using Project.Scripts.Gameplay;
+using Project.Scripts.Gameplay.GameFlow.Logic;
 using Project.Scripts.UI.Game;
 using Project.Scripts.UI.Game.Settings;
 using Project.Scripts.UI.Game.Top;
@@ -10,10 +11,10 @@ namespace Project.Scripts.Core.Scenes.Game.States
     public class GamePlayState : IEnterState, IExitState
     {
         private readonly GameStateMachine _stateMachine;
-        private readonly IGameFlowController _gameFlowController;
+        private readonly IGameFlow _gameFlowController;
         private readonly IGameUIController _gameUIController;
 
-        public GamePlayState(GameStateMachine stateMachine, IGameFlowController gameFlowController,
+        public GamePlayState(GameStateMachine stateMachine, IGameFlow gameFlowController,
             IGameUIController gameUIController)
         {
             _stateMachine = stateMachine;

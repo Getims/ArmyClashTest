@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Project.Scripts.Gameplay.Factory
+namespace Project.Scripts.Gameplay.Factory.Utils
 {
     public static class SpawnZoneHelper
     {

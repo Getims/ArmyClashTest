@@ -1,11 +1,11 @@
 using System;
 using Project.Scripts.Core.Enums;
-using UnityEngine;
+using Project.Scripts.Gameplay.Units.Data;
 
-namespace Project.Scripts.Gameplay.Units.Controllers
+namespace Project.Scripts.Gameplay.Units.Systems.Local
 {
     [Serializable]
-    public class HealthController
+    public class UnitHealthSystem
     {
         private int _health;
 
@@ -13,11 +13,11 @@ namespace Project.Scripts.Gameplay.Units.Controllers
         public int Health => _health;
         public event Action OnHealthChanged;
 
-        public HealthController(UnitInfo unitInfo)
+        public UnitHealthSystem(UnitInfo unitInfo)
         {
             _health = unitInfo.GetStat(UnitStat.HP);
             if (_health == 0)
-                Debug.LogWarning($"Dead on start {unitInfo.Name}");
+                UnityEngine.Debug.LogWarning($"Dead on start {unitInfo.Name}");
         }
 
         public void Hit(int damage)

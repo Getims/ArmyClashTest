@@ -259,7 +259,7 @@ MonoBehaviour:
     _meshFilter: {fileID: 8045284064473782596}
     _meshRenderer: {fileID: 5030887771959426773}
     _healthView: {fileID: 2088441789925036284}
-  _moveController:
+  _unitMoveSystem:
     _unitTransform: {fileID: 2479560920265612825}
     _navMeshAgent: {fileID: 3767654532773139342}
 --- !u!114 &-7996406184973717673

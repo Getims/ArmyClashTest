@@ -4,6 +4,7 @@ using Project.Scripts.Core.Infrastructure.Services;
 using Project.Scripts.Core.Infrastructure.StateMachines;
 using Project.Scripts.Core.Infrastructure.StateMachines.States;
 using Project.Scripts.Gameplay;
+using Project.Scripts.Gameplay.GameFlow.Logic;
 using Project.Scripts.UI.Game;
 using UnityEngine;
 
@@ -13,13 +14,13 @@ namespace Project.Scripts.Core.Scenes.Game.States
     {
         private readonly GameStateMachine _stateMachine;
         private readonly ICoroutineRunner _coroutineRunner;
-        private readonly IGameFlowController _gameFlowController;
+        private readonly IGameFlow _gameFlowController;
         private readonly IGameUIController _gameUIController;
 
         private Coroutine _levelCreationCO;
 
         public PrepareGamePlayState(GameStateMachine stateMachine, ICoroutineRunner coroutineRunner,
-            IGameFlowController gameFlowController, IGameUIController gameUIController)
+            IGameFlow gameFlowController, IGameUIController gameUIController)
         {
             _gameUIController = gameUIController;
             _gameFlowController = gameFlowController;
