@@ -1,5 +1,5 @@
-using Project.Scripts.Core.Enums;
 using Project.Scripts.Gameplay.Units;
+using Project.Scripts.Runtime.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -35,9 +35,9 @@ namespace Project.Scripts.Gameplay.Debug
             if (_enableDebug && _unit != null)
             {
                 _health = _unit.UnitInfo.GetStat(UnitStat.HP);
-                _attack = _unit.UnitInfo.GetStat(UnitStat.ATK);
-                _speed = _unit.UnitInfo.GetStat(UnitStat.SPEED);
-                _attackSpeed = _unit.UnitInfo.GetStat(UnitStat.ATKSPD);
+                _attack = _unit.UnitInfo.GetStat(UnitStat.Attack);
+                _speed = _unit.UnitInfo.GetStat(UnitStat.Speed);
+                _attackSpeed = _unit.UnitInfo.GetStat(UnitStat.AttackSpeed);
             }
         }
     }

@@ -1,6 +1,6 @@
 using System;
-using Project.Scripts.Core.Enums;
 using Project.Scripts.Gameplay.Units.Data;
+using Project.Scripts.Runtime.Enums;
 using UnityEngine;
 
 namespace Project.Scripts.Gameplay.Units.Systems.Local
@@ -17,7 +17,7 @@ namespace Project.Scripts.Gameplay.Units.Systems.Local
         public UnitAttackSystem(UnitInfo unitInfo, float attackSpeedPointValue)
         {
             _unitInfo = unitInfo;
-            _attackDelay = unitInfo.GetStat(UnitStat.ATKSPD) * attackSpeedPointValue;
+            _attackDelay = unitInfo.GetStat(UnitStat.AttackSpeed) * attackSpeedPointValue;
         }
 
         public void Attack()
@@ -31,7 +31,7 @@ namespace Project.Scripts.Gameplay.Units.Systems.Local
             if (target == null)
                 return;
 
-            target.Hit(_unitInfo.GetStat(UnitStat.ATK));
+            target.Hit(_unitInfo.GetStat(UnitStat.Attack));
             OnAttack?.Invoke();
 
             if (target.IsAlive == false)

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Project.Scripts.Core.Infrastructure.Configs;
+using Project.Scripts.Infrastructure.Configs;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using UnityEditor;

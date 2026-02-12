@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Project.Scripts.Core.Enums;
 using Project.Scripts.Gameplay.Factory.Utils;
+using Project.Scripts.Runtime.Enums;
 using UnityEngine;
 
 namespace Project.Scripts.Gameplay.Factory.Data
@@ -52,7 +52,7 @@ namespace Project.Scripts.Gameplay.Factory.Data
             int count = _pointsCount > 0 ? _pointsCount : 1;
 
             var pointsList = SpawnZoneHelper.DistributeSquares(center, size, count);
-            Core.Utilities.Utils.Shuffle(pointsList);
+            Infrastructure.Utilities.Utils.Shuffle(pointsList);
             _points = new Queue<Vector3>(pointsList);
         }
     }

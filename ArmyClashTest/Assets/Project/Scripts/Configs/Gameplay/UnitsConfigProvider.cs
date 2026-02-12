@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Project.Scripts.Core.Constants;
-using Project.Scripts.Core.Infrastructure.Configs;
+using Project.Scripts.Infrastructure.Configs;
+using Project.Scripts.Runtime.Constants;
 using UnityEngine;
 
 namespace Project.Scripts.Configs.Gameplay

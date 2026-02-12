@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Linq;
-using Project.Scripts.Core.Infrastructure.Configs;
 using Project.Scripts.Editor.ConfigsEditor.Core;
 using Project.Scripts.Editor.ConfigsEditor.ScriptableObject;
+using Project.Scripts.Infrastructure.Configs;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;

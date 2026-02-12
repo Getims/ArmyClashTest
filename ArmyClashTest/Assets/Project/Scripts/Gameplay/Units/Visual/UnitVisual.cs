@@ -1,5 +1,5 @@
 using System;
-using Project.Scripts.Core.Utilities;
+using Project.Scripts.Infrastructure.Utilities;
 using UnityEngine;
 
 namespace Project.Scripts.Gameplay.Units.Visual

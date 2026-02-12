@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Project.Scripts.Core.Constants;
-using Project.Scripts.Core.Enums;
-using Project.Scripts.Core.Infrastructure.Configs;
+using Project.Scripts.Infrastructure.Configs;
+using Project.Scripts.Runtime.Constants;
+using Project.Scripts.Runtime.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -27,9 +27,9 @@ namespace Project.Scripts.Configs.Gameplay
             return new List<StatConfig>
             {
                 new StatConfig(UnitStat.HP, _health),
-                new StatConfig(UnitStat.ATK, _attack),
-                new StatConfig(UnitStat.SPEED, _speed),
-                new StatConfig(UnitStat.ATKSPD, _attackSpeed)
+                new StatConfig(UnitStat.Attack, _attack),
+                new StatConfig(UnitStat.Speed, _speed),
+                new StatConfig(UnitStat.AttackSpeed, _attackSpeed)
             };
         }
 
@@ -39,11 +39,11 @@ namespace Project.Scripts.Configs.Gameplay
             {
                 case UnitStat.HP:
                     return _health;
-                case UnitStat.ATK:
+                case UnitStat.Attack:
                     return _attack;
-                case UnitStat.SPEED:
+                case UnitStat.Speed:
                     return _speed;
-                case UnitStat.ATKSPD:
+                case UnitStat.AttackSpeed:
                     return _attackSpeed;
                 default:
                     return 0;

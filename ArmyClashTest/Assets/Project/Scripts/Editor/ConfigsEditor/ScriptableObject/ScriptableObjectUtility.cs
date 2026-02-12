@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
-using Project.Scripts.Core.Infrastructure.Configs;
+using Project.Scripts.Infrastructure.Configs;
 using UnityEditor;
 using UnityEngine;
 

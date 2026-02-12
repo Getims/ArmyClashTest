@@ -1,8 +1,8 @@
 using Project.Scripts.Configs;
-using Project.Scripts.Core.Infrastructure.Configs;
 using Project.Scripts.Gameplay.Factory.Logic;
 using Project.Scripts.Gameplay.GameFlow.Logic;
 using Project.Scripts.Gameplay.Units.Systems.Global;
+using Project.Scripts.Infrastructure.Configs;
 using UnityEngine;
 using Zenject;
 

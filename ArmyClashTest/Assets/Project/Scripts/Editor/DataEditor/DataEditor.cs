@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Project.Scripts.Core.Infrastructure.Data;
-using Project.Scripts.Core.Utilities;
+using Project.Scripts.Infrastructure.Data;
+using Project.Scripts.Infrastructure.Utilities;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;

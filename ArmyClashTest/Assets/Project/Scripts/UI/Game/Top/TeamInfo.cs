@@ -1,4 +1,4 @@
-using Project.Scripts.Core.Enums;
+using Project.Scripts.Runtime.Enums;
 using TMPro;
 using UnityEngine;
 

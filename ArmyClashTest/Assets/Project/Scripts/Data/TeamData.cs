@@ -1,5 +1,5 @@
 using System;
-using Project.Scripts.Core.Enums;
+using Project.Scripts.Runtime.Enums;
 
 namespace Project.Scripts.Data
 {

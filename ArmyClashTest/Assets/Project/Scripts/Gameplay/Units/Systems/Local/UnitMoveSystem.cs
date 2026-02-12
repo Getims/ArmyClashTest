@@ -1,6 +1,6 @@
 using System;
-using Project.Scripts.Core.Enums;
 using Project.Scripts.Gameplay.Units.Data;
+using Project.Scripts.Runtime.Enums;
 using UnityEngine;
 
 namespace Project.Scripts.Gameplay.Units.Systems.Local
@@ -19,7 +19,7 @@ namespace Project.Scripts.Gameplay.Units.Systems.Local
         public void Initialize(UnitInfo unitInfo, float speedPointValue)
         {
             _unitInfo = unitInfo;
-            _speed = speedPointValue * _unitInfo.GetStat(UnitStat.SPEED);
+            _speed = speedPointValue * _unitInfo.GetStat(UnitStat.Speed);
         }
 
         public void MoveTowards(float deltaTime)

@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using Lean.Pool;
 using Project.Scripts.Configs;
 using Project.Scripts.Configs.Gameplay;
-using Project.Scripts.Core.Enums;
-using Project.Scripts.Core.Infrastructure.Configs;
 using Project.Scripts.Gameplay.Factory.Data;
 using Project.Scripts.Gameplay.Factory.Logic;
 using Project.Scripts.Gameplay.Units;
+using Project.Scripts.Infrastructure.Configs;
+using Project.Scripts.Runtime.Enums;
 using UnityEngine;
 using Zenject;
 

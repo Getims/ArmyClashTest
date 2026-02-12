@@ -1,6 +1,6 @@
-using Project.Scripts.Core.Enums;
-using Project.Scripts.Core.Events;
-using Project.Scripts.Core.Infrastructure.Configs;
+using Project.Scripts.Infrastructure.Configs;
+using Project.Scripts.Runtime.Enums;
+using Project.Scripts.Runtime.Events;
 using Project.Scripts.UI.Common;
 using Project.Scripts.UI.MainMenu.Main;
 using Zenject;

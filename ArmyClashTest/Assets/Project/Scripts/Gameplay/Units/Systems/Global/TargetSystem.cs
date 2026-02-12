@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Project.Scripts.Core.Enums;
+using Project.Scripts.Runtime.Enums;
 using UnityEngine;
 
 namespace Project.Scripts.Gameplay.Units.Systems.Global

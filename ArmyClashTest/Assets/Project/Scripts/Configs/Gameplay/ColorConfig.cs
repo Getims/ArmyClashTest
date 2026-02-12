@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Project.Scripts.Core.Constants;
-using Project.Scripts.Core.Enums;
-using Project.Scripts.Core.Infrastructure.Configs;
+using Project.Scripts.Infrastructure.Configs;
+using Project.Scripts.Runtime.Constants;
+using Project.Scripts.Runtime.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

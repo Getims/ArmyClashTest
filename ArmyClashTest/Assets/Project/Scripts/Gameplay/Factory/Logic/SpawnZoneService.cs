@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Project.Scripts.Configs;
-using Project.Scripts.Core.Enums;
 using Project.Scripts.Gameplay.Factory.Data;
+using Project.Scripts.Runtime.Enums;
 using UnityEngine;
 
 namespace Project.Scripts.Gameplay.Factory.Logic

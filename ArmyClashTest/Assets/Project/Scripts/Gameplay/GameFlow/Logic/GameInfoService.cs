@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Project.Scripts.Core.Enums;
+using Project.Scripts.Runtime.Enums;
 
 namespace Project.Scripts.Gameplay.GameFlow.Logic
 {

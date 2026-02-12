@@ -1,6 +1,6 @@
 using System;
-using Project.Scripts.Core.Enums;
 using Project.Scripts.Gameplay.Units.Data;
+using Project.Scripts.Runtime.Enums;
 
 namespace Project.Scripts.Gameplay.Units.Systems.Local
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using Project.Scripts.Core.Infrastructure.Configs;
+using Project.Scripts.Infrastructure.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
