@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Project.Scripts.Data;
 using Project.Scripts.UI.Common.Panels;
 using TMPro;
@@ -23,6 +25,8 @@ namespace Project.Scripts.UI.MainMenu.Main
         private Transform _container;
 
         [Inject] private IGameDataService _gameDataService;
+
+        private List<TeamInfo> _teamInfos = new List<TeamInfo>();
 
         public event Action OnStartLevelOpenRequest;
 
@@ -52,11 +56,27 @@ namespace Project.Scripts.UI.MainMenu.Main
         {
             var teamsInfo = _gameDataService.TeamsInfo;
 
-            foreach (var teamInfo in teamsInfo)
+            for (int i = 0; i < teamsInfo.Count; i++)
             {
-                var newTeamInfo = Instantiate(_teamInfoPrefab, _container);
-                newTeamInfo.UpdateInfo(teamInfo.UnitTeam, teamInfo.WinsCount);
+                var teamInfo = teamsInfo.ElementAt(i);
+                if(i < _teamInfos.Count)
+                    {
+                        _teamInfos[i].UpdateInfo(teamInfo.UnitTeam, teamInfo.WinsCount);
+                        _teamInfos[i].gameObject.SetActive(true);
+                    }
+                else
+                {
+                     var newTeamInfo = Instantiate(_teamInfoPrefab, _container);
+                    newTeamInfo.UpdateInfo(teamInfo.UnitTeam, teamInfo.WinsCount);
+                    _teamInfos.Add(newTeamInfo);
+                }
             }
+
+            for (int i = teamsInfo.Count; i < _teamInfos.Count; i++)
+            {
+                _teamInfos[i].gameObject.SetActive(false);
+            }
+
         }
 
         private void OnStartButtonClick()

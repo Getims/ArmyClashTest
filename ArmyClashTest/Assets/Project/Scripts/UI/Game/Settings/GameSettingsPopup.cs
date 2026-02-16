@@ -16,16 +16,6 @@ namespace Project.Scripts.UI.Game.Settings
         public event Action OnRestartClick;
         public event Action OnExitClick;
 
-        public override void Show()
-        {
-            base.Show();
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
         protected override void Start()
         {
             base.Start();

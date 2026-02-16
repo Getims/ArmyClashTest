@@ -6,6 +6,7 @@ namespace Project.Scripts.Gameplay.GameFlow.Logic
     public interface IGameResultService
     {
         void SaveResult();
+        UnitTeam GetWinner();
     }
 
     public class GameResultService : IGameResultService
@@ -19,11 +20,10 @@ namespace Project.Scripts.Gameplay.GameFlow.Logic
             _gameDataService = gameDataService;
         }
 
-        public void SaveResult()
+        public UnitTeam GetWinner()
         {
-            _gameDataService.BattlesCount.Set(_gameDataService.BattlesCount.Value + 1);
+             UnitTeam winner = UnitTeam.Team1;
 
-            UnitTeam winner = UnitTeam.Team1;
             foreach (var teamInfo in _gameInfoService.UnitsDictionary)
             {
                 if (teamInfo.Value > 0)
@@ -33,6 +33,14 @@ namespace Project.Scripts.Gameplay.GameFlow.Logic
                 }
             }
 
+            return winner;
+        }
+
+        public void SaveResult()
+        {
+            _gameDataService.BattlesCount.Set(_gameDataService.BattlesCount.Value + 1);
+
+            UnitTeam winner = GetWinner();
             _gameDataService.AddTeamWin(winner);
         }
     }

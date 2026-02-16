@@ -12,7 +12,7 @@ namespace Project.Scripts.UI.Game
         [SerializeField]
         private TMP_Text _winText;
 
-        [Inject] private IGameInfoService _gameInfoService;
+        [Inject] private IGameResultService _gameResultService;
 
         public override void Show()
         {
@@ -33,16 +33,7 @@ namespace Project.Scripts.UI.Game
 
         private void UpdateWinText()
         {
-            UnitTeam winner = UnitTeam.Team1;
-
-            foreach (var teamInfo in _gameInfoService.UnitsDictionary)
-            {
-                if (teamInfo.Value > 0)
-                {
-                    winner = teamInfo.Key;
-                    break;
-                }
-            }
+            UnitTeam winner = _gameResultService.GetWinner();
 
             _winText.text = $"Team {winner} won the battle!";
         }
