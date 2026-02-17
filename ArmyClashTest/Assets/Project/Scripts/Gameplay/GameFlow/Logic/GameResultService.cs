@@ -22,7 +22,7 @@ namespace Project.Scripts.Gameplay.GameFlow.Logic
 
         public UnitTeam GetWinner()
         {
-             UnitTeam winner = UnitTeam.Team1;
+            UnitTeam winner = UnitTeam.Team1;
 
             foreach (var teamInfo in _gameInfoService.UnitsDictionary)
             {

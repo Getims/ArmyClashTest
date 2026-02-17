@@ -59,14 +59,14 @@ namespace Project.Scripts.UI.MainMenu.Main
             for (int i = 0; i < teamsInfo.Count; i++)
             {
                 var teamInfo = teamsInfo.ElementAt(i);
-                if(i < _teamInfos.Count)
-                    {
-                        _teamInfos[i].UpdateInfo(teamInfo.UnitTeam, teamInfo.WinsCount);
-                        _teamInfos[i].gameObject.SetActive(true);
-                    }
+                if (i < _teamInfos.Count)
+                {
+                    _teamInfos[i].UpdateInfo(teamInfo.UnitTeam, teamInfo.WinsCount);
+                    _teamInfos[i].gameObject.SetActive(true);
+                }
                 else
                 {
-                     var newTeamInfo = Instantiate(_teamInfoPrefab, _container);
+                    var newTeamInfo = Instantiate(_teamInfoPrefab, _container);
                     newTeamInfo.UpdateInfo(teamInfo.UnitTeam, teamInfo.WinsCount);
                     _teamInfos.Add(newTeamInfo);
                 }
@@ -76,7 +76,6 @@ namespace Project.Scripts.UI.MainMenu.Main
             {
                 _teamInfos[i].gameObject.SetActive(false);
             }
-
         }
 
         private void OnStartButtonClick()
